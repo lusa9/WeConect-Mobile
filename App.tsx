@@ -8,55 +8,47 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Button,
+  Modal,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import VideoCall from './VideoCall';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    <SafeAreaView>
+      <StatusBar />
       <View
         style={{
-          backgroundColor: isDarkMode ? Colors.black : Colors.white,
           flexDirection: 'column',
           alignItems: 'center',
         }}>
-        <Text
-          style={[
-            styles.sectionTitle,
-            {
-              color: isDarkMode ? Colors.white : Colors.black,
-            },
-          ]}>
-          Simple lib integration
-        </Text>
-        <Button title="Go to library"></Button>
+        <Text style={[styles.sectionTitle]}>Jitsi Meet</Text>
+        <Button
+          title="Join the Call"
+          onPress={() => setModalVisible(true)}></Button>
       </View>
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <VideoCall onConferenceTerminated={() => setModalVisible(false)} />
+      </Modal>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 42,
     fontWeight: '600',
-    padding: 40,
+    padding: 50,
   },
 });
 
