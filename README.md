@@ -2,7 +2,7 @@
 
 This project has been delivered as a part of "We-Conect Challenge".
 
-![iphones](iPhone.png)
+![iPhones](iPhones.png)
 
 ## macOS Build Steps
 
@@ -33,10 +33,6 @@ npx react-native start
 ```
 npx react-native run-ios
 ```
-
-6. Play around
-
-![iphones](iPhone2.png)
 
 ## About
 
